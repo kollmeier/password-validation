@@ -8,6 +8,11 @@ public class PasswordValidation {
 
     public static boolean passwordContainsDigits(String password) {
         // Implementation
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isDigit(password.charAt(i))) {
+                return true;
+            }
+        }
         return false;
     }
 
