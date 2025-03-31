@@ -1,5 +1,7 @@
 package ckollmeier.de;
 
+import java.util.Arrays;
+
 public class PasswordValidation {
     public static boolean passwordHasMinEightCharacters(String password) {
         // Implementation
@@ -30,7 +32,18 @@ public class PasswordValidation {
     }
 
     public static boolean passwordIsNoCommonPassword(String password) {
-        // Implementation
-        return false;
+        String[] commonPasswords =
+                new String[] {
+                        "12345678",
+                        "1234567890",
+                        "password",
+                        "passwort",
+                        "secret",
+                        "deine mudda"
+                };
+
+        return (Arrays.stream(commonPasswords).noneMatch(
+                cp -> cp.equalsIgnoreCase(password)
+        ));
     }
 }
