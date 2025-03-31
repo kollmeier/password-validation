@@ -9,7 +9,7 @@ public class PasswordUtility {
         StringBuilder password = new StringBuilder();
         Random rand = new Random();
 
-        // Eight letters, alternatly UC
+        // Four letters, alternatly UC
         for (int i = 0; i < 4; i++) {
             String letter = Character.toString((char) (rand.nextInt(26) + 'a'));
 
