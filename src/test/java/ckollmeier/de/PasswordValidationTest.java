@@ -158,4 +158,34 @@ class PasswordValidationTest {
 
         assertFalse(result);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "1A345bc_67890",
+            "1A345bc678@90",
+            "1A345bc6789$0",
+    })
+    void passwordContainsSpecialCharacters_shouldReturnTrue_whenPasswordContainsSpecialCharacters(String password) {
+        boolean result = PasswordValidation.passwordContainsSpecialCharacters(password);
+
+        assertTrue(result);
+    }
+
+    @Test
+    void passwordContainsSpecialCharacters_shouldReturnFalse_whenPasswordContainsNoSpecialCharacters() {
+        String password = "1A345bc67890";
+
+        boolean result = PasswordValidation.passwordContainsSpecialCharacters(password);
+
+        assertFalse(result);
+    }
+
+    @Test
+    void passwordContainsSpecialCharacters_shouldReturnFalse_whenPasswordIsEmpty() {
+        String password = "";
+
+        boolean result = PasswordValidation.passwordContainsSpecialCharacters(password);
+
+        assertFalse(result);
+    }
 }
