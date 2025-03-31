@@ -188,4 +188,29 @@ class PasswordValidationTest {
 
         assertFalse(result);
     }
+
+    @Test
+    void passwordIsValid_shouldReturnTrue_whenPasswordIsValid() {
+        String password = "1A345bc6_78$90";
+
+        boolean result = PasswordValidation.passwordIsValid(password);
+
+        assertTrue(result);
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "A1b2@", // too short
+            "ABC$@DEFGHI", // No numbers
+            "1A345BC$67@890", // No lc letters
+            "1a345bc$67@890", // No capital letters
+            "1A345bc67890", // No special characters
+            "passwort", // too obvious
+    })
+    void passwordIsValid_shouldReturnFalse_whenPasswordIsInvalid(String password) {
+        boolean result = PasswordValidation.passwordIsValid(password);
+
+        assertFalse(result);
+    }
 }

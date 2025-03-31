@@ -50,4 +50,13 @@ public class PasswordValidation {
     public static boolean passwordContainsSpecialCharacters(String password) {
         return (Arrays.stream(PasswordUtility.SPECIALCHARACTERS).anyMatch(password::contains));
     }
+
+    public static boolean passwordIsValid(String password) {
+        return passwordHasMinEightCharacters(password)
+                && passwordIsNoCommonPassword(password)
+                && passwordContainsDigits(password)
+                && passwordContainsUpperCaseAndLowerCase(password)
+                && passwordIsNoCommonPassword(password)
+                && passwordContainsSpecialCharacters(password);
+    }
 }
