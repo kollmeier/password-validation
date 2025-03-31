@@ -1,6 +1,11 @@
 package ckollmeier.de;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -109,6 +114,47 @@ class PasswordValidationTest {
         String password = "";
 
         boolean result = PasswordValidation.passwordContainsUpperCaseAndLowerCase(password);
+
+        assertFalse(result);
+    }
+
+    @Test
+    void passwordIsNoCommonPassword_shouldReturnTrue_whenPasswordIsNoCommonPassword() {
+        String password = "1A345bc6_78$90";
+
+        boolean result = PasswordValidation.passwordIsNoCommonPassword(password);
+
+        assertTrue(result);
+    }
+
+    @Test
+    void passwordIsNoCommonPassword_shouldReturnTrue_whenPasswordIsEmpty() {
+        String password = "";
+
+        boolean result = PasswordValidation.passwordIsNoCommonPassword(password);
+
+        assertTrue(result);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "12345678",
+            "1234567890",
+            "password",
+            "passwort",
+            "secret",
+            "deine mudda"
+    })
+    void passwordIsNoCommonPassword_shouldReturnFalse_whenPasswordIsCommonInUpperCaseAndLowerCase(String password) {
+        boolean result = PasswordValidation.passwordIsNoCommonPassword(password);
+
+        assertFalse(result);
+
+        result = PasswordValidation.passwordIsNoCommonPassword(password.toLowerCase());
+
+        assertFalse(result);
+
+        result = PasswordValidation.passwordIsNoCommonPassword(password.toUpperCase());
 
         assertFalse(result);
     }
