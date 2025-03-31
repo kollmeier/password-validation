@@ -46,4 +46,15 @@ public class PasswordValidation {
                 cp -> cp.equalsIgnoreCase(password)
         ));
     }
+
+    public static boolean passwordContainsSpecialCharacters(String password) {
+        String[] specialCharacters =
+                new String[] {
+                        "@",
+                        "_",
+                        "$",
+                };
+
+        return (Arrays.stream(specialCharacters).anyMatch(password::contains));
+    }
 }
