@@ -76,4 +76,40 @@ class PasswordValidationTest {
 
         assertFalse(result);
     }
+
+    @Test
+    void passwordContainsUpperCaseAndLowerCase_shouldReturnTrue_whenPasswordHasUpperCaseAndLowerCase() {
+        String password = "1A345bc6_78$90";
+
+        boolean result = PasswordValidation.passwordContainsUpperCaseAndLowerCase(password);
+
+        assertTrue(result);
+    }
+
+    @Test
+    void passwordContainsUpperCaseAndLowerCase_shouldReturnFalse_whenPasswordOnlyContainsUpperCase() {
+        String password = "1A345BC6_78$90";
+
+        boolean result = PasswordValidation.passwordContainsUpperCaseAndLowerCase(password);
+
+        assertFalse(result);
+    }
+
+    @Test
+    void passwordContainsUpperCaseAndLowerCase_shouldReturnFalse_whenPasswordOnlyContainsLowerCase() {
+        String password = "1a345bc6_78$90";
+
+        boolean result = PasswordValidation.passwordContainsUpperCaseAndLowerCase(password);
+
+        assertFalse(result);
+    }
+
+    @Test
+    void passwordContainsUpperCaseAndLowerCase_shouldReturnFalse_whenPasswordisEmpty() {
+        String password = "";
+
+        boolean result = PasswordValidation.passwordContainsUpperCaseAndLowerCase(password);
+
+        assertFalse(result);
+    }
 }
