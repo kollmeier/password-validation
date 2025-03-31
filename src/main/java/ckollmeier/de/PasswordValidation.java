@@ -17,7 +17,15 @@ public class PasswordValidation {
     }
 
     public static boolean passwordContainsUpperCaseAndLowerCase(String password) {
-        // Implementation
+        boolean lc = false;
+        boolean uc = false;
+        for (int i = 0; i < password.length(); i++) {
+            lc = lc || Character.isLowerCase(password.charAt(i));
+            uc = uc || Character.isUpperCase(password.charAt(i));
+            if (lc && uc) {
+                return true;
+            }
+        }
         return false;
     }
 
