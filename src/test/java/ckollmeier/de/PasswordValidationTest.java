@@ -40,4 +40,40 @@ class PasswordValidationTest {
 
         assertFalse(result);
     }
+
+    @Test
+    void passwordContainsDigits_shouldReturnTrue_whenPasswordContainsOnlyDigits() {
+        String password = "1234567890";
+
+        boolean result = PasswordValidation.passwordContainsDigits(password);
+
+        assertTrue(result);
+    }
+
+    @Test
+    void passwordContainsDigits_shouldReturnTrue_whenPasswordContainsDigitsAndCharacters() {
+        String password = "1A345BC6_78$90";
+
+        boolean result = PasswordValidation.passwordContainsDigits(password);
+
+        assertTrue(result);
+    }
+
+    @Test
+    void passwordContainsDigits_shouldReturnFalse_whenPasswordContainsNoDigits() {
+        String password = "A$B_D@";
+
+        boolean result = PasswordValidation.passwordContainsDigits(password);
+
+        assertFalse(result);
+    }
+
+    @Test
+    void passwordContainsDigits_shouldReturnFalse_whenPasswordIsEmpty() {
+        String password = "";
+
+        boolean result = PasswordValidation.passwordContainsDigits(password);
+
+        assertFalse(result);
+    }
 }
