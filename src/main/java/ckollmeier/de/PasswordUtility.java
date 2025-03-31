@@ -3,6 +3,8 @@ package ckollmeier.de;
 import java.util.Random;
 
 public class PasswordUtility {
+    public static final String[] SPECIALCHARACTERS = new String[]{"@", "_", "$"};
+
     public static String generatePassword() {
         StringBuilder password = new StringBuilder();
         Random rand = new Random();
@@ -24,7 +26,7 @@ public class PasswordUtility {
             password.insert(position, digit);
         }
         // one special character
-        String special = new String[] {"@", "_", "$"}[rand.nextInt(3)];
+        String special = SPECIALCHARACTERS[rand.nextInt(3)];
         int position = rand.nextInt(password.length());
         password.insert(position, special);
 

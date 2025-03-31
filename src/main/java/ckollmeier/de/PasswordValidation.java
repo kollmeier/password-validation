@@ -48,13 +48,6 @@ public class PasswordValidation {
     }
 
     public static boolean passwordContainsSpecialCharacters(String password) {
-        String[] specialCharacters =
-                new String[] {
-                        "@",
-                        "_",
-                        "$",
-                };
-
-        return (Arrays.stream(specialCharacters).anyMatch(password::contains));
+        return (Arrays.stream(PasswordUtility.SPECIALCHARACTERS).anyMatch(password::contains));
     }
 }
